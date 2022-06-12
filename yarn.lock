@@ -3358,7 +3358,7 @@ http-errors@^1.7.3:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.1"
 
-http-status-codes@^2.2.0:
+http-status-codes@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/http-status-codes/-/http-status-codes-2.2.0.tgz#bb2efe63d941dfc2be18e15f703da525169622be"
   integrity sha512-feERVo9iWxvnejp3SEfm/+oNG517npqL2/PIA8ORjyOZjGC7TwCRQsZylciLS64i6pJ0wRYz3rkXLRwbtFa8Ng==
@@ -3766,7 +3766,7 @@ jmespath@0.16.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
   integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
-joi@^17.6.0:
+joi@17.6.0:
   version "17.6.0"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.6.0.tgz#0bb54f2f006c09a96e75ce687957bd04290054b2"
   integrity sha512-OX5dG6DTbcr/kbMFj0KGYxuew69HPcAE3K/sZpEV2nP6e/j/C0HV+HNiBPCASxdx5T7DMoa0s8UeHWMnb6n2zw==
@@ -4289,12 +4289,12 @@ micromatch@^4.0.4, micromatch@^4.0.5:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-middy-middleware-warmup@^1.0.3:
+middy-middleware-warmup@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/middy-middleware-warmup/-/middy-middleware-warmup-1.0.3.tgz#7a8d0791235bd132a284ba4619ba54760049e5b8"
   integrity sha512-vCiDlXaaLlKyHd/qKH/4B5gQYv4W9q8xLrVZHnn/onZSANmE+p867FzpT4TvKaQbmU+ed8xWHRKFjjfes0GNhA==
 
-middy@^0.36.0:
+middy@0.36.0:
   version "0.36.0"
   resolved "https://registry.yarnpkg.com/middy/-/middy-0.36.0.tgz#f5f2e461b2f7260e4aadd0e53ff4c828e9f7e7ba"
   integrity sha512-IhIVEZQs8mxcvPHfzAQpwINj4R+aVgeCcUL9KS+OYE5Vy4hKhZtVl/1yfI8dSvDAfRBoRp6N/Gi04pxQM4vAzw==
@@ -5372,7 +5372,7 @@ serverless-dotenv-plugin@3.12.2:
     dotenv "^10.0.0"
     dotenv-expand "^5.1.0"
 
-serverless-offline-ssm@^6.2.0:
+serverless-offline-ssm@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/serverless-offline-ssm/-/serverless-offline-ssm-6.2.0.tgz#f2db290a72631629579ce5f940ed76f254f96653"
   integrity sha512-Af7JeLbU4OHAx7ZgAs2OLP2DGKyp/g45rX7SWQ8KiBzn47jme+MqN+GOV6qd5oZ8V9khd3p62+RueHR3ezEZZQ==
@@ -6201,7 +6201,7 @@ validate-npm-package-name@^3.0.0:
   dependencies:
     builtins "^1.0.3"
 
-validator@^13.7.0:
+validator@13.7.0:
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
   integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
