@@ -1,0 +1,83 @@
+service: airasia-backend
+variablesResolutionMode: 20210326
+
+custom:
+  stage: ${opt:stage, 'qa'}
+  serverless-offline-ssm:
+    stages:
+      - dev
+    ssm:
+      '/qa-mongo': 'mongodb://localhost:27017/'
+  domains:
+    prod: api.tripeur.in
+    stage: api-stag.tripeur.in
+    qa: api-qa.tripeur.in
+    dev: ''
+  customDomain:
+    basePath: 'airasia'
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    stage: "${self:custom.stage}"
+    createRoute53Record: true
+  bucketname: tripeur-${opt:stage}-deployment-artifacts
+  isProd:
+    stage: false
+    preprod: false
+    prod: true
+  common:
+    cors: ${file(./cors.yml)}
+  warmup:
+    enabled: ${self:custom.isProd.${self:custom.stage}, false} # Whether to warm up functions by default or not, enabled only on production
+    cleanFolder: false # Whether remove _warmup directory with WarmUp lambda or not
+    folderName: '_warmup' # Name of the folder created for the generated warmup
+    memorySize: 256
+    vpc: false
+    events:
+      - schedule: 'cron(0/10 5-22 ? * * *)' # Run WarmUp every 10 minutes, every day, between 5:00 and 22:00 (UTC)
+    timeout: 5
+    prewarm: true # Run WarmUp immediately after a deployment lambda
+    concurrency: 1 # Warm up 1 concurrent instance
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  serverless-offline:
+    httpPort: 4000
+    noPrependStageInUrl: true
+
+provider:
+  name: aws
+  region: ${file(./env.yml):${opt:stage}.REGION}
+  runtime: nodejs14.x
+  memorySize: 512
+  lambdaHashingVersion: 20201221 # https://www.serverless.com/framework/docs/deprecations/#LAMBDA_HASHING_VERSION_V2
+  role: arn:aws:iam::830068832459:role/Tripeur-Lambda-Role
+  vpc:
+    securityGroupIds:
+      - ${file(./env.yml):${opt:stage}.SECURITY_GROUP}
+    subnetIds:
+      - ${file(./env.yml):${opt:stage}.SUBNET}
+  deploymentBucket:
+    name: ${self:custom.bucketname}
+    maxPreviousDeploymentArtifacts: 10
+  apiGateway:
+    shouldStartNameWithService: true
+  environment:
+    MONGODB_URI: ${ssm:/qa-mongo}
+    REGION: ${file(./env.yml):${opt:stage}.REGION, ''}
+
+functions:
+  app:
+    handler: src/controllers/index.getFunc
+    events:
+      - http:
+          path: test
+          method: get
+          cors: ${self:custom.common.cors.${self:custom.stage}.defaultCache}
+
+package:
+  individually: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline-ssm
+  - serverless-offline
+  - serverless-domain-manager
